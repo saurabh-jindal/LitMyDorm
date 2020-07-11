@@ -25,5 +25,6 @@ admin.site.index_title = 'Litmydorm administration'
 
 urlpatterns = [
     path('administrator_url/', admin.site.urls),
+    path('social-auth/', include('social_django.urls', namespace="social")),
     path('', include('home.urls')),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
