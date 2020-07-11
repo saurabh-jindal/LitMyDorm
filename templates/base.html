@@ -1,0 +1,344 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>Litmydorm | eCommerce </title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" Litmydorm | eCommerce">
+	<meta name="keywords" content="litmydorm, eCommerce, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="{% static 'home/img/favicon.ico' %}" rel="shortcut icon" />
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/flaticon.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/slicknav.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/jquery-ui.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/animate.css' %}" />
+	<link rel="stylesheet" href="{% static 'home/css/style.css' %}" />
+</head>
+<style>
+/* social media buttons in login page */
+/* Style all font awesome icons */
+.social-btn .btn {
+	color: #fff;
+	margin: 10px 0;
+	font-size: 15px;
+	border-radius: 50px;
+	text-indent: 10px;
+	font-weight: normal;
+	border: none;
+	text-align: center;		
+}
+.social-btn .btn:hover {
+	opacity: 0.9;
+}
+.social-btn .btn-primary {
+	background: #507cc0;
+}
+.social-btn .btn-info {
+	background: #64ccf1;
+}
+.social-btn .btn-danger {
+	background: #df4930;
+}
+.social-btn .btn i {
+	margin-right: 9px;
+	font-size: 20px;
+	min-width: 25px;
+	position: relative;
+	top: 2px;
+}
+.or-seperator {
+	margin: 50px 0 15px;
+	text-align: center;
+	border-top: 1px solid #e0e0e0;
+}
+.or-seperator b {
+	padding: 0 10px;
+	width: 40px;
+	height: 40px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 40px;
+	background: #fff;
+	display: inline-block;
+	border: 1px solid #e0e0e0;
+	border-radius: 50%;
+	position: relative;
+	top: -22px;
+	z-index: 1;
+}
+
+</style>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="./index.html" class="site-logo">
+							<img src="{% static 'home/img/logo.png' %}" alt="">
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search on litmydorm ....">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel">
+							<div class="up-item">
+								<i class="flaticon-profile"></i>
+								{% if user.is_authenticated %}	
+								<a style="margin-right:2em;">Hello {{ request.user }}</a>
+								<a href="/logout"> Logout </a>
+								{% else %}
+								<a data-toggle="modal" data-target="#login">Sign</a> In or <a data-toggle="modal"
+								data-target="#signup">Create Account</a>
+								{% endif %}
+							</div>
+							<div class="up-item">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span>0</span>
+								</div>
+								<a href="#">Shopping Cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Women</a></li>
+					<li><a href="#">Men</a></li>
+					<li><a href="#">Jewelry
+						</a></li>
+					<li><a href="#">Shoes</a>
+						<ul class="sub-menu">
+							<li><a href="#">Sneakers</a></li>
+							<li><a href="#">Sandals</a></li>
+							<li><a href="#">Formal Shoes</a></li>
+							<li><a href="#">Boots</a></li>
+							<li><a href="#">Flip Flops</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Pages</a>
+						<ul class="sub-menu">
+							<li><a href="./product.html">Product Page</a></li>
+							<li><a href="./category.html">Category Page</a></li>
+							<li><a href="./cart.html">Cart Page</a></li>
+							<li><a href="./checkout.html">Checkout Page</a></li>
+							<li><a href="./contact.html">Contact Page</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Blog</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+	<!-- Login Modal -->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Login</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="{% url 'handleLogin' %}" method="POST" class="contact-form">
+						{% csrf_token %}
+						<input type="text" name="username" placeholder="Your username">
+						<input type="password" name="password" placeholder="Password">
+						<button type="submit" class="site-btn">Login</button>
+						<div class="or-seperator"><b>or</b></div>
+						<div class="text-center social-btn">
+							<a href="#" class="btn btn-primary btn-lg btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a>
+							<a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a>
+							<a href="#" class="btn btn-danger btn-lg btn-block"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Signup Modal -->
+	<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">SignUp</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="{% url 'handleSignup' %}" method="POST" class="contact-form">
+						{% csrf_token %}
+						<input type="text" name="username" placeholder="User Name">
+						<input type="text" name="fname" placeholder="First Name">
+						<input type="text" name="lname" placeholder="Last Name">
+						<input type="text" name="email" placeholder="Your e-mail">
+						<input type="password" name="password" placeholder="Password">
+						<input type="password" name="password2" placeholder="Confirm Password">
+						<button type="submit" class="site-btn">SignUp</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% for message in messages %}
+		<div class="alert alert-{{ message.tags }} alert-dismissible mb-0 fade show" role="alert">
+		<strong>Message : </strong> {{ message }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+	{% endfor %}
+	{% block body %}
+
+	{% endblock body %}
+
+
+	<!-- Footer section -->
+	<section class="footer-section">
+		<div class="container">
+			<div class="footer-logo text-center">
+				<a href="index.html"><img src="{% static 'home/img/logo-light.png' %}" alt=""></a>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>About</h2>
+						<p>Donec vitae purus nunc. Morbi faucibus erat sit amet congue mattis. Nullam frin-gilla
+							faucibus urna, id dapibus erat iaculis ut. Integer ac sem.</p>
+						<img src="{% static 'home/img/cards.png' %}" alt="">
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>Questions</h2>
+						<ul>
+							<li><a href="">About Us</a></li>
+							<li><a href="">Track Orders</a></li>
+							<li><a href="">Returns</a></li>
+							<li><a href="">Jobs</a></li>
+							<li><a href="">Shipping</a></li>
+							<li><a href="">Blog</a></li>
+						</ul>
+						<ul>
+							<li><a href="">Partners</a></li>
+							<li><a href="">Bloggers</a></li>
+							<li><a href="">Support</a></li>
+							<li><a href="">Terms of Use</a></li>
+							<li><a href="">Press</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>Questions</h2>
+						<div class="fw-latest-post-widget">
+							<div class="lp-item">
+								<div class="lp-thumb set-bg" data-setbg="{% static 'home/img/blog-thumbs/1.jpg' %}">
+								</div>
+								<div class="lp-content">
+									<h6>what shoes to wear</h6>
+									<span>Oct 21, 2018</span>
+									<a href="#" class="readmore">Read More</a>
+								</div>
+							</div>
+							<div class="lp-item">
+								<div class="lp-thumb set-bg" data-setbg="{% static 'home/img/blog-thumbs/2.jpg' %}">
+								</div>
+								<div class="lp-content">
+									<h6>trends this year</h6>
+									<span>Oct 21, 2018</span>
+									<a href="#" class="readmore">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget contact-widget">
+						<h2>Questions</h2>
+						<div class="con-info">
+							<span>C.</span>
+							<p>Your Company Ltd </p>
+						</div>
+						<div class="con-info">
+							<span>B.</span>
+							<p>1481 Creekside Lane Avila Beach, CA 93424, P.O. BOX 68 </p>
+						</div>
+						<div class="con-info">
+							<span>T.</span>
+							<p>+53 345 7953 32453</p>
+						</div>
+						<div class="con-info">
+							<span>E.</span>
+							<p>office@youremail.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="social-links-warp">
+			<div class="container">
+				<div class="social-links">
+					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					<a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer section end -->
+
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'home/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'home/js/jquery.slicknav.min.js' %}"></script>
+	<script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'home/js/jquery.nicescroll.min.js' %}"></script>
+	<script src="{% static 'home/js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'home/js/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'home/js/main.js' %}"></script>
+
+</body>
+
+</html>
