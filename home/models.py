@@ -13,26 +13,34 @@ PRODUCT_CHOICES = (
 class Slide(models.Model):
     caption1 = models.CharField(max_length=100)
     caption2 = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='home/images', default='')
+    image = models.ImageField(upload_to='index/images', default='')
     link = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return "Slide added with captian " + self.caption1
 
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
     desc = models.TextField()
-    image = models.ImageField(upload_to='home/images', default='')
+    image = models.ImageField(upload_to='index/images', default='')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('home:category', kwargs={
+        return reverse('index:category', kwargs={
             'slug': self.slug
         })
 
@@ -46,7 +54,7 @@ class Product(models.Model):
     price = models.FloatField()
     slug = models.SlugField()
     discount_price = models.FloatField(blank=True, null=True)
-    image = models.ImageField(upload_to='home/images', default='')
+    image = models.ImageField(upload_to='index/images', default='')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     stock = models.CharField(max_length=10)
     is_active = models.BooleanField(default=True)
@@ -56,23 +64,23 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('home:product', kwargs={
+        return reverse('index:product', kwargs={
             'slug': self.slug
         })
 
     def get_add_to_cart_url(self):
-        return reverse("home:add-to-cart", kwargs={
+        return reverse("index:add-to-cart", kwargs={
             'slug': self.slug
         })
 
     def get_remove_from_cart_url(self):
-        return reverse("home:remove-from-cart", kwargs={
+        return reverse("index:remove-from-cart", kwargs={
             'slug': self.slug
         })
 
 
 class Images(models.Model):
-    image = models.ImageField(upload_to='home/images', default='')
+    image = models.ImageField(upload_to='index/images', default='')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -109,7 +117,7 @@ class Address(models.Model):
     apartment_address = models.CharField(max_length=150)
     country = models.CharField(max_length=50)
     zip = models.CharField(max_length=20)
-    address_type = models.CharField(max_length=20)
+    phone = models.CharField(max_length=20)
     default = models.BooleanField(default=False)
 
     def __str__(self):
@@ -140,8 +148,7 @@ class Order(models.Model):
     products = models.ManyToManyField(OrderItem)
     ordered_date = models.DateTimeField(auto_now_add=True)
     is_ordered = models.BooleanField(default=False)
-    shipping_address = models.ForeignKey(Address, related_name='shipping_address' ,on_delete=models.SET_NULL, blank=True, null=True)
-    billing_address = models.ForeignKey(Address, related_name='billing_address' , on_delete=models.SET_NULL, blank=True, null=True)
+    address = models.ForeignKey(Address,on_delete=models.SET_NULL, blank=True, null=True)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     coupon = models.ForeignKey(Coupon, on_delete=models.SET_NULL, blank=True, null=True)
     is_delivered = models.BooleanField(default=False)

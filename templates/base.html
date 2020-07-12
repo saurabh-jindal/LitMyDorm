@@ -92,7 +92,7 @@
 				<div class="row">
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
-						<a href="./index.html" class="site-logo">
+						<a href="{% url 'index' %}" class="site-logo">
 							<img src="{% static 'home/img/logo.png' %}" alt="">
 						</a>
 					</div>
@@ -130,12 +130,14 @@
 			<div class="container">
 				<!-- menu -->
 				<ul class="main-menu">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Women</a></li>
-					<li><a href="#">Men</a></li>
-					<li><a href="#">Jewelry
-						</a></li>
-					<li><a href="#">Shoes</a>
+					<li><a href="{% url 'index' %}">Home</a></li>
+					<li><a href="{% url 'category' 'bag' %}">Bag</a></li>
+					<li><a href="{% url 'category' 'badge' %}">Badge</a></li>
+					<li><a href="{% url 'category' 'tshirt' %}">Tshirt</a></li>
+					<li><a href="{% url 'category' 'shirt' %}">Shirt</a></li>
+					<li><a href="{% url 'category' 'pants' %}">Pants</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+					{% comment %} <li><a href="#">Shoes</a>
 						<ul class="sub-menu">
 							<li><a href="#">Sneakers</a></li>
 							<li><a href="#">Sandals</a></li>
@@ -143,17 +145,7 @@
 							<li><a href="#">Boots</a></li>
 							<li><a href="#">Flip Flops</a></li>
 						</ul>
-					</li>
-					<li><a href="#">Pages</a>
-						<ul class="sub-menu">
-							<li><a href="./product.html">Product Page</a></li>
-							<li><a href="./category.html">Category Page</a></li>
-							<li><a href="./cart.html">Cart Page</a></li>
-							<li><a href="./checkout.html">Checkout Page</a></li>
-							<li><a href="./contact.html">Contact Page</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Blog</a></li>
+					</li> {% endcomment %}
 				</ul>
 			</div>
 		</nav>
@@ -230,7 +222,7 @@
 	<section class="footer-section">
 		<div class="container">
 			<div class="footer-logo text-center">
-				<a href="index.html"><img src="{% static 'home/img/logo-light.png' %}" alt=""></a>
+				<a href="{% url 'index' %}"><img src="{% static 'home/img/logo-light.png' %}" alt=""></a>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-sm-6">
@@ -291,23 +283,23 @@
 						<h2>Questions</h2>
 						<div class="con-info">
 							<span>C.</span>
-							<p>Your Company Ltd </p>
+							<p>LITMYDORM </p>
 						</div>
 						<div class="con-info">
 							<span>B.</span>
-							<p>1481 Creekside Lane Avila Beach, CA 93424, P.O. BOX 68 </p>
+							<p>Canaught Palace, New Delhi </p>
 						</div>
 						<div class="con-info">
 							<span>T.</span>
-							<p>+53 345 7953 32453</p>
+							<p>+91 - 8860697807</p>
 						</div>
 						<div class="con-info">
 							<span>E.</span>
-							<p>office@youremail.com</p>
+							<p>jindalsaurabh533@gmail.com</p>
 						</div>
 					</div>
 				</div>
-			</div>
+
 		</div>
 		<div class="social-links-warp">
 			<div class="container">
@@ -318,7 +310,6 @@
 					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
 					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
 					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
 				</div>
 
 
